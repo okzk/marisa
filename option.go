@@ -4,7 +4,9 @@ package marisa
 #include "marisa_glue.h"
 */
 import "C"
-import "errors"
+import (
+	"errors"
+)
 
 const (
 	MARISA_MIN_NUM_TRIES     = C.MARISA_MIN_NUM_TRIES
@@ -56,16 +58,16 @@ func NewBuildOption() *BuildOption {
 }
 
 func (b *BuildOption) validate() error {
-	if b.NumTries^C.MARISA_NUM_TRIES_MASK != 0 {
+	if b.NumTries&^C.MARISA_NUM_TRIES_MASK != 0 {
 		return errors.New("Invalid NumTries")
 	}
-	if b.CacheLevel^C.MARISA_CACHE_LEVEL_MASK != 0 {
+	if b.CacheLevel&^C.MARISA_CACHE_LEVEL_MASK != 0 {
 		return errors.New("Invalid CacheLevel")
 	}
-	if b.TailMode^C.MARISA_TAIL_MODE_MASK != 0 {
+	if b.TailMode&^C.MARISA_TAIL_MODE_MASK != 0 {
 		return errors.New("Invalid TailMode")
 	}
-	if b.NodeOrder^C.MARISA_NODE_ORDER_MASK != 0 {
+	if b.NodeOrder&^C.MARISA_NODE_ORDER_MASK != 0 {
 		return errors.New("Invalid NodeOrder")
 	}
 

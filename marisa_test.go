@@ -61,7 +61,7 @@ func ExampleBuildWithOption() {
 	option.CacheLevel = MARISA_SMALL_CACHE
 	option.TailMode = MARISA_BINARY_TAIL
 
-	trie, err := keyset.Build()
+	trie, err := keyset.BuildWithOption(option)
 	panicIfErrorOccurred(err)
 	defer trie.Dispose()
 
